@@ -1,9 +1,9 @@
-const cacheName = "AV-Portfolio-1.0";
+const cacheName = "Abhinav-Satheesh-Portfolio-1.1";
 const contentToCache = [
     "Build/Portfolio.loader.js",
-    "Build/Portfolio.framework.js",
-    "Build/Portfolio.data",
-    "Build/Portfolio.wasm",
+    "Build/Portfolio.framework.js.unityweb",
+    "Build/Portfolio.data.unityweb",
+    "Build/Portfolio.wasm.unityweb",
     "TemplateData/style.css"
 
 ];
