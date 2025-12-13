@@ -14,8 +14,8 @@
     
     <!-- PWA Meta Tags -->
     <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="favicon.ico">
-    <link rel="apple-touch-icon" href="icon-512.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -104,7 +104,7 @@
             background: linear-gradient(90deg, #4CAF50, #8BC34A);
             width: 0%;
             transition: width 0.2s ease-out;
-            border-radius: 8px;
+            border-radius: 5px;
         }
 
         /* Full Screen Button */
@@ -189,6 +189,8 @@
         var targetProgress = 0;
         var hasRealProgress = false;
         var isLoading = true;
+        var startTime = Date.now();
+        var simulationDuration = 10000; // 10 seconds to reach 90%
 
         // Smooth progress animation
         function animateProgress() {
@@ -213,14 +215,18 @@
         // Start animation loop
         animateProgress();
 
-        // Simulate initial progress for cached files
+        // Simulate initial progress for cached files - spread over 10 seconds
         var simulatedProgressInterval = setInterval(function() {
             if (!hasRealProgress && targetProgress < 90) {
-                // Gradually increase to 90% if no real progress
-                targetProgress += Math.random() * 3 + 1;
-                if (targetProgress > 90) targetProgress = 90;
+                var elapsed = Date.now() - startTime;
+                var progressRatio = Math.min(elapsed / simulationDuration, 1);
+                
+                // Use easing function for smoother progression
+                // This creates a slight deceleration curve
+                var easedProgress = progressRatio * (2 - progressRatio);
+                targetProgress = easedProgress * 90;
             }
-        }, 150);
+        }, 50); // Check every 50ms for smooth updates
 
         // Create Unity Instance
         createUnityInstance(unityCanvas, {
