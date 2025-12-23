@@ -27,9 +27,16 @@
     </style>
 </head>
 <body>
-    <iframe src="https://html-classic.itch.zone/html/15931391/Portfolio/index.html" 
+    <iframe id="gameFrame"
             allowfullscreen
             allow="autoplay; fullscreen; gamepad; gyroscope; accelerometer; xr-spatial-tracking">
     </iframe>
+    
+    <script>
+        // Add timestamp to prevent caching
+        const timestamp = new Date().getTime();
+        document.getElementById('gameFrame').src = 
+            `https://html-classic.itch.zone/html/15931391/Portfolio/index.html?v=${timestamp}`;
+    </script>
 </body>
 </html>
